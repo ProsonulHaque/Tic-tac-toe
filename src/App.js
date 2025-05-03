@@ -17,11 +17,11 @@ export default function Game(){
   }
 
   const moves = history.map((board, move) => {
-    const description = move ?  `Go to move #${move}` : 'Go to game start';
+    const description = move == currentMove? `You're at move #${move}` : move ?  `Go to move #${move}` : 'Go to game start';
     
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        {move == currentMove? (<div>{description}</div>) : (<button onClick={() => jumpTo(move)}>{description}</button>)}
       </li>
     );
   });
