@@ -65,25 +65,17 @@ function Board({currentBoard, xIsNext, onPlay}) {
   }
   
   return (
-  <>
-    <div className="status">{status}</div>
-
-    <div className="board-row">
-      <Square value={currentBoard[0]} onSquareClick={() => handleClick(0)}/>
-      <Square value={currentBoard[1]} onSquareClick={() => handleClick(1)}/>
-      <Square value={currentBoard[2]} onSquareClick={() => handleClick(2)}/>
-    </div>
-    <div className="board-row">
-      <Square value={currentBoard[3]} onSquareClick={() => handleClick(3)}/>
-      <Square value={currentBoard[4]} onSquareClick={() => handleClick(4)}/>
-      <Square value={currentBoard[5]} onSquareClick={() => handleClick(5)}/>
-    </div>
-    <div className="board-row">
-      <Square value={currentBoard[6]} onSquareClick={() => handleClick(6)}/>
-      <Square value={currentBoard[7]} onSquareClick={() => handleClick(7)}/>
-      <Square value={currentBoard[8]} onSquareClick={() => handleClick(8)}/>
-    </div>
-  </>
+    <>
+      <div className="status">{status}</div>
+      
+      {[...Array(3)].map((_, i) => (
+        <div className="board-row" key={i}>
+          {[...Array(3)].map((_, j) => (
+            <Square value={currentBoard[i * 3 + j]} onSquareClick={() => handleClick(i * 3 + j)} />
+          ))}
+        </div>
+      ))}
+    </>
   );
 }
 
